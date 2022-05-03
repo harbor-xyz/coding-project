@@ -31,7 +31,7 @@ It is up to you how much time you want to spend on this project. There are likel
 
 ## Submission
 
-Please open a pull request against the `master` branch and reach out to Prakash when finished.
+Please fork this repository and reach out to Prakash when finished.
 
 ## Next Steps
 
