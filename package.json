@@ -1,0 +1,18 @@
+{
+  "name": "calendly",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "test": "jest"
+  },
+  "dependencies": {
+    "express": "^4.18.1",
+    "jest": "^28.0.3",
+    "pg": "^8.7.3",
+    "sequelize": "^6.19.0",
+    "sqlite3": "^5.0.7",
+    "supertest": "^6.2.3",
+    "unique-names-generator": "^4.7.1"
+  }
+}
