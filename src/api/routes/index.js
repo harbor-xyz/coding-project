@@ -70,4 +70,3 @@ router.route('/availability/overlap/:username1/:username2').get(overlapAvailabil
 module.exports = {
     router
 }
-
