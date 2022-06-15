@@ -2,6 +2,32 @@
 
 Welcome to the Harbor take home project. We hope this is a good opportunity for you to showcase your skills.
 
+## Setup Instructions
+Please follow `With Docker` if you have docker installed.
+### With Docker
+1. Build the docker image
+```
+docker build . -t saksham115/interview
+```
+2. Run the docker image (while exposing the 3001 port)
+```
+docker run -p 3001:3001 saksham115/interview
+```
+
+### Without Docker
+
+#### Pre-requisites
+1. Install node  >= v16.
+2. Install npm
+3. Make sure sqlite is running without username and password
+
+#### Installation
+```
+# Make sure you are in the directory
+npm install
+npm run start
+```
+
 ## The Challenge
 
 Build us a REST API for calendly. Remember to support
