@@ -18,6 +18,7 @@ import kotlin.reflect.jvm.javaType
 import java.util.HashMap
 import org.checkerframework.checker.units.qual.C
 import sun.reflect.generics.reflectiveObjects.ParameterizedTypeImpl
+import java.sql.Time
 import java.time.Instant
 
 
@@ -101,8 +102,14 @@ open class KotlinMapperJdbi3<C : Any> constructor(private val clazz: Class<C>, p
                                     java.sql.Date::class.java -> {
                                         logger.trace("found java.sql.Date")
                                         val value = rs.getObject(i)
-                                        val lng = getTimestampUTC(i, value, param)
-                                        matchingParms.add(Pair(param, java.sql.Date(lng)))
+                                        //val lng = getTimestampUTC(i, value, param)
+                                        matchingParms.add(Pair(param, value))
+                                    }
+                                    java.sql.Timestamp::class.java -> {
+                                        logger.trace("found java.sql.Date")
+                                        val value = rs.getObject(i)
+                                        //val lng = getTimestampUTC(i, value, param)
+                                        matchingParms.add(Pair(param, value))
                                     }
                                     java.util.Date::class.java -> {
                                         logger.trace("found java.sql.Date")

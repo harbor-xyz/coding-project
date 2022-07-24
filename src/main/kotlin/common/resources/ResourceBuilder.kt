@@ -79,42 +79,6 @@ class ResourceBuilder {
             return Jdbi3Builder(ResourceBuilder(resourceId, "jdbi3"))
         }
 
-        /**
-         * @return a resource builder for an Azure CloudStorageAccount corresponding to [resourceId].
-         * For configuration options, see [CloudStorageAccount]
-         */
-        fun cloudStorageAccountBuilder(resourceId: String) : StorageAccountBuilder {
-            return StorageAccountBuilder(ResourceBuilder(resourceId, "storage"))
-        }
-
-        /**
-         * @return a resource builder for an Azure CloudStorageAccount corresponding to [resourceId].
-         * For configuration options, see [CloudStorageAccount]
-         */
-        fun cloudStorageAccount(resourceId: String) : CloudStorageAccount {
-            return cloudStorageAccountBuilder(resourceId).build()
-        }
-
-        fun documentClient(resourceId: String): DocumentDBClientBuilder {
-            return DocumentDBClientBuilder(ResourceBuilder(resourceId, "documentdb"))
-        }
-
-        /**
-         * @return a resource builder for an Azure CloudBlobClient corresponding to [resourceId].
-         * For configuration options, see [CloudStorageAccount]
-         */
-        fun cloudBlobClient(resourceId: String) : CloudBlobClientProxy {
-            return CloudBlobClientProxy(cloudStorageAccount(resourceId).createCloudBlobClient())
-        }
-
-        /**
-         * @return a resource builder for an Azure CloudTableClient corresponding to [resourceId].
-         * For configuration options, see [CloudStorageAccount]
-         */
-        fun cloudTableClient(resourceId: String) : CloudTableClientProxy {
-            return CloudTableClientProxy(cloudStorageAccount(resourceId).createCloudTableClient())
-        }
-
     }
 }
 
