@@ -36,7 +36,24 @@ class UserAvailabilityService @Inject constructor(
 
     fun getOverlappingAvailability(userId1: Int, userId2: Int, date: Long): List<UserAvailability>? {
         val jobDeferred = CoroutineScope(Dispatchers.IO).async {
-            userAvailabilityDao.getOverlappingAvailability(userId1, userId2, date)
+            val records = userAvailabilityDao.getOverlappingAvailability(userId1, userId2, date)
+            val overlappedAvailabilityRecords = mutableListOf<UserAvailability>()
+            records?.forEach {
+                overlappedAvailabilityRecords.add(UserAvailability(
+                    it.userId1,
+                    it.date1,
+                    it.startTime1,
+                    it.endTime1
+                ))
+
+                overlappedAvailabilityRecords.add(UserAvailability(
+                    it.userId2,
+                    it.date2,
+                    it.startTime2,
+                    it.endTime2
+                ))
+            }
+            overlappedAvailabilityRecords
         }
         return runBlocking {  jobDeferred.await()}
     }

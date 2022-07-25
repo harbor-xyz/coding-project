@@ -25,6 +25,21 @@ data class UserAvailability(
 ): DBBaseModel()
 
 
+data class TwoUserAvailabilityRecords(
+    val userId1: Int,
+    val date1: Long,
+    val startTime1: Long,
+    val endTime1: Long,
+
+    val userId2: Int,
+    val date2: Long,
+    val startTime2: Long,
+    val endTime2: Long
+)
+
+
 
 class UserMapper: KotlinMapperJdbi3<User>(User::class.java)
 class UserAvailabilityMapper: KotlinMapperJdbi3<UserAvailability>(UserAvailability::class.java)
+
+class TwoUserAvailabilityRecordsMapper: KotlinMapperJdbi3<TwoUserAvailabilityRecords>(TwoUserAvailabilityRecords::class.java)

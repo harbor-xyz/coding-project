@@ -26,8 +26,8 @@ import javax.ws.rs.core.Response
         - createAvailability
             {userId1
                 [
-                    {date, startTime, endTime, timezone},
-                    {date, startTime, endTime, timezone}
+                    {date, startTime, endTime},
+                    {date, startTime, endTime}
                 ]
             }
  */
