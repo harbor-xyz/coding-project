@@ -1,7 +1,7 @@
 package common.core.mappers
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties
-import common.sql.jdbi3.KotlinMapperJdbi3
+import common.assets.sql.jdbi3.KotlinMapperJdbi3
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 data class CourseData(

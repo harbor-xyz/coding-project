@@ -1,4 +1,4 @@
-package common.sql.jdbi3
+package common.assets.sql.jdbi3
 
 import org.jdbi.v3.sqlobject.customizer.SqlStatementCustomizingAnnotation
 

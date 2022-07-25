@@ -1,4 +1,4 @@
-package common.sql.jdbi
+package common.assets.sql.jdbi
 
 @Target(AnnotationTarget.PROPERTY)
 @Retention(AnnotationRetention.RUNTIME)

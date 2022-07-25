@@ -1,9 +1,9 @@
-package common.sql.jdbi3
+package common.assets.sql.jdbi3
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.module.kotlin.registerKotlinModule
-import common.sql.jdbi.DateTimeType
-import common.sql.jdbi.UtcMillis
+import common.assets.sql.jdbi.DateTimeType
+import common.assets.sql.jdbi.UtcMillis
 import microsoft.sql.DateTimeOffset
 import org.jdbi.v3.core.argument.Argument
 import org.jdbi.v3.core.argument.NamedArgumentFinder

@@ -1,4 +1,4 @@
-package common.sql.jdbi3
+package common.assets.sql.jdbi3
 
 import com.fasterxml.jackson.core.type.TypeReference
 import com.fasterxml.jackson.databind.ObjectMapper
@@ -15,10 +15,7 @@ import kotlin.reflect.KParameter
 import kotlin.reflect.full.primaryConstructor
 import kotlin.reflect.jvm.isAccessible
 import kotlin.reflect.jvm.javaType
-import java.util.HashMap
-import org.checkerframework.checker.units.qual.C
 import sun.reflect.generics.reflectiveObjects.ParameterizedTypeImpl
-import java.sql.Time
 import java.time.Instant
 
 

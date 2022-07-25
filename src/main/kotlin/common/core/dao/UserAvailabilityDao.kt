@@ -53,7 +53,7 @@ select
         end as Overlapping,
 t1.user_id as u1, t2.user_id as u2, t1.date as t1d, t1.start_time as t1s, t1.end_time as t1e, t2.date as t2d, t2.start_time as t2s, t2.end_time as t2e
 from user_availability as t1, user_availability as t2
-where t1.user_id = :userId1 and t2.user_id = :userId2 ) as t
+where t1.user_id = :userId1 and t2.user_id = :userId2 and t1.status = 'ACTIVE' and t2.status = 'ACTIVE') as t
 where t.Overlapping = 'Yes'
     """)
     fun getOverlappingAvailability(@Bind("userId1") userId1: Int, @Bind("userId2") userId2: Int, @Bind("date") date: Long): List<TwoUserAvailabilityRecords>?

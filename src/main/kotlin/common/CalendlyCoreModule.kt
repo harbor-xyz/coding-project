@@ -8,7 +8,6 @@ import org.jdbi.v3.core.Jdbi
 import org.jdbi.v3.core.kotlin.KotlinPlugin
 import org.jdbi.v3.sqlobject.SqlObjectPlugin
 import org.jdbi.v3.sqlobject.kotlin.KotlinSqlObjectPlugin
-import common.core.dao.CourseDao
 import common.core.dao.UserAvailabilityDao
 import common.core.dao.UserDao
 import java.util.function.Consumer
@@ -21,7 +20,6 @@ class CalendlyCoreModule(
         val jdbi = getJdbi()
         bind(Jdbi::class.java).toInstance(jdbi)
         bind(ObjectMapper::class.java).toInstance(objectMapper)
-        bind(CourseDao::class.java).toInstance(jdbi.onDemand(CourseDao::class.java))
         bind(UserAvailabilityDao::class.java).toInstance(jdbi.onDemand(UserAvailabilityDao::class.java))
         bind(UserDao::class.java).toInstance(jdbi.onDemand(UserDao::class.java))
     }

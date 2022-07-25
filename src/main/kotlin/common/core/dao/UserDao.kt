@@ -14,11 +14,11 @@ const val USER = "user"
 interface UserDao {
 
     @RegisterRowMapper(UserMapper::class)
-    @SqlQuery("SELECT * FROM $USER WHERE id = :id")
+    @SqlQuery("SELECT * FROM [$USER] WHERE id = :id")
     fun getUserById(@Bind("id") id: Int): User?
 
     @RegisterRowMapper(UserMapper::class)
-    @SqlQuery("SELECT * FROM $USER WHERE mobileNumber = :mobileNumber")
+    @SqlQuery("SELECT * FROM [$USER] WHERE mobileNumber = :mobileNumber")
     fun getUserByMobileNumber(@Bind("mobileNumber") mobileNumber: String): User?
 
     @SqlUpdate("INSERT INTO $USER (name, mobileNumber, emailId) VALUES(:name, :mobileNumber, :emailId)")

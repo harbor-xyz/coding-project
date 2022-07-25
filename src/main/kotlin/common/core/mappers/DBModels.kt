@@ -1,6 +1,7 @@
 package common.core.mappers
 
-import common.sql.jdbi3.KotlinMapperJdbi3
+import common.core.UserAvailabilityStatus
+import common.assets.sql.jdbi3.KotlinMapperJdbi3
 import java.time.Instant
 
 abstract class DBBaseModel(
@@ -14,14 +15,15 @@ data class User(
     val id: Int,
     val name: String,
     val mobileNumber: String,
-    val emailId: String,
+    val emailAt: String,
 ): DBBaseModel()
 
 data class UserAvailability(
     val userId: Int,
     val date: Long,
     val startTime: Long,
-    val endTime: Long
+    val endTime: Long,
+    val status: UserAvailabilityStatus = UserAvailabilityStatus.ACTIVE
 ): DBBaseModel()
 
 

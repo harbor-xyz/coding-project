@@ -13,7 +13,6 @@ import io.dropwizard.lifecycle.Managed
 import io.dropwizard.setup.Bootstrap
 import io.dropwizard.setup.Environment
 import org.eclipse.jetty.servlets.CrossOriginFilter
-import common.resources.SampleResource
 import common.resources.UserAvailabilityResource
 import common.resources.UserResource
 import java.util.*
@@ -32,7 +31,6 @@ class CalendlyApplication : DropwizardApplication<CalendlyProjectConfiguration>(
     override fun getJacksonModules() = listOf(JavaTimeModule())
 
     override fun getResourceClasses() = listOf(
-        SampleResource::class.java,
         UserAvailabilityResource::class.java,
         UserResource::class.java
     )
