@@ -8,6 +8,9 @@ import kotlinx.coroutines.async
 import org.slf4j.LoggerFactory
 import common.core.dao.UserAvailabilityDao
 import common.core.mappers.UserAvailability
+import kotlinx.coroutines.runBlocking
+import java.time.Instant
+import javax.jws.soap.SOAPBinding.Use
 
 
 @Singleton
@@ -29,5 +32,12 @@ class UserAvailabilityService @Inject constructor(
         CoroutineScope(Dispatchers.IO).async {
             userAvailabilityDao.createUserAvailability(userAvailability)
         }
+    }
+
+    fun getOverlappingAvailability(userId1: Int, userId2: Int, date: Long): List<UserAvailability>? {
+        val jobDeferred = CoroutineScope(Dispatchers.IO).async {
+            userAvailabilityDao.getOverlappingAvailability(userId1, userId2, date)
+        }
+        return runBlocking {  jobDeferred.await()}
     }
 }
