@@ -51,8 +51,8 @@ curl -X POST -H "Content-Type: application/json" -d  '{"availabilityList": [{"da
 http://127.0.0.1:7002/availability/userAvailability/getOverlappingAvailability/user1/1/userId2/2
 ```
 
-![submit availability](https://ibb.co/C1d0pTn)
-![overlapped availability](https://ibb.co/zQGjP0p)
+Submit availability:  https://ibb.co/C1d0pTn
+Overlapped Availability: https://ibb.co/zQGjP0p
 
 
 ### Tech choices:
