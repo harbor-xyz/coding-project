@@ -265,19 +265,6 @@ object Configuration {
         }
     }
 
-    /**
-     * Replace value string with value from azure key vault.
-     * For example, if the input string is "abc-$akv{def}-ghi"
-     * and assuming secret "def" is mapped to "" in Azure KeyVault,
-     * final value returned by this function would be "abc--ghi"
-     */
-    private fun substituteAzureKeyVaultVars(
-        azureConfigurationClient: AzureKeyVaultClient?, regex: Regex, input: String
-    ): String {
-        return input.replace(regex) { match ->
-            azureConfigurationClient?.getValue(match.groupValues[1]) ?: ""
-        }
-    }
 
     private fun getHardcodedEnv(name: String): String? {
         if(configDbHost != null && configDbName != null && configDbUser != null && configDbPassword != null) {

@@ -1,0 +1,245 @@
+[INFO] Scanning for projects...
+[WARNING]
+[WARNING] Some problems were encountered while building the effective model for product:common:jar:1.0.0
+[WARNING] 'dependencies.dependency.(groupId:artifactId:type:classifier)' must be unique: org.jetbrains.kotlin:kotlin-stdlib-jdk8:jar -> version 1.6.10 vs ${kotlin.version} @ line 473, column 21
+[WARNING] 'build.plugins.plugin.version' for org.apache.maven.plugins:maven-shade-plugin is missing. @ line 69, column 21
+[WARNING]
+[WARNING] It is highly recommended to fix these problems because they threaten the stability of your build.
+[WARNING]
+[WARNING] For this reason, future Maven versions might no longer support building such malformed projects.
+[WARNING]
+[INFO]
+[INFO] ---------------------------< product:common >---------------------------
+[INFO] Building common 1.0.0
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO]
+[INFO] --- maven-dependency-plugin:2.8:tree (default-cli) @ common ---
+[INFO] product:common:jar:1.0.0
+[INFO] +- org.jetbrains.kotlin:kotlin-test-junit5:jar:1.6.10:test
+[INFO] |  \- org.junit.jupiter:junit-jupiter-api:jar:5.6.0:test
+[INFO] |     +- org.opentest4j:opentest4j:jar:1.2.0:test
+[INFO] |     \- org.junit.platform:junit-platform-commons:jar:1.6.0:test
+[INFO] +- org.junit.jupiter:junit-jupiter-engine:jar:5.6.0:test
+[INFO] |  +- org.apiguardian:apiguardian-api:jar:1.1.0:test
+[INFO] |  \- org.junit.platform:junit-platform-engine:jar:1.6.0:test
+[INFO] +- io.dropwizard:dropwizard-core:jar:2.0.28:compile
+[INFO] |  +- io.dropwizard:dropwizard-util:jar:2.0.28:compile
+[INFO] |  +- io.dropwizard:dropwizard-jackson:jar:2.0.28:compile
+[INFO] |  +- io.dropwizard:dropwizard-validation:jar:2.0.28:compile
+[INFO] |  |  \- org.glassfish:jakarta.el:jar:3.0.4:compile
+[INFO] |  +- io.dropwizard:dropwizard-configuration:jar:2.0.28:compile
+[INFO] |  |  \- org.apache.commons:commons-text:jar:1.9:compile
+[INFO] |  +- io.dropwizard:dropwizard-logging:jar:2.0.28:compile
+[INFO] |  |  +- io.dropwizard.metrics:metrics-logback:jar:4.1.29:compile
+[INFO] |  |  +- org.slf4j:jul-to-slf4j:jar:1.7.32:compile
+[INFO] |  |  +- ch.qos.logback:logback-core:jar:1.2.9:compile
+[INFO] |  |  +- io.dropwizard.logback:logback-throttling-appender:jar:1.1.7:compile
+[INFO] |  |  +- org.slf4j:log4j-over-slf4j:jar:1.7.32:runtime
+[INFO] |  |  \- org.slf4j:jcl-over-slf4j:jar:1.7.32:runtime
+[INFO] |  +- io.dropwizard:dropwizard-metrics:jar:2.0.28:compile
+[INFO] |  +- io.dropwizard:dropwizard-jersey:jar:2.0.28:compile
+[INFO] |  |  +- org.glassfish.jersey.core:jersey-server:jar:2.33:compile
+[INFO] |  |  +- org.glassfish.jersey.ext:jersey-metainf-services:jar:2.33:runtime
+[INFO] |  |  +- org.glassfish.jersey.inject:jersey-hk2:jar:2.33:runtime
+[INFO] |  |  |  \- org.glassfish.hk2:hk2-locator:jar:2.6.1:runtime
+[INFO] |  |  +- org.javassist:javassist:jar:3.28.0-GA:compile
+[INFO] |  |  +- io.dropwizard.metrics:metrics-jersey2:jar:4.1.29:compile
+[INFO] |  |  +- com.fasterxml.jackson.jaxrs:jackson-jaxrs-json-provider:jar:2.10.5:compile
+[INFO] |  |  |  +- com.fasterxml.jackson.jaxrs:jackson-jaxrs-base:jar:2.10.5:compile
+[INFO] |  |  |  \- com.fasterxml.jackson.module:jackson-module-jaxb-annotations:jar:2.10.5:compile
+[INFO] |  |  |     +- jakarta.xml.bind:jakarta.xml.bind-api:jar:2.3.2:compile
+[INFO] |  |  |     \- jakarta.activation:jakarta.activation-api:jar:1.2.1:compile
+[INFO] |  |  +- jakarta.annotation:jakarta.annotation-api:jar:1.3.5:compile
+[INFO] |  |  +- org.glassfish.hk2:hk2-api:jar:2.6.1:compile
+[INFO] |  |  |  +- org.glassfish.hk2:hk2-utils:jar:2.6.1:compile
+[INFO] |  |  |  \- org.glassfish.hk2.external:aopalliance-repackaged:jar:2.6.1:compile
+[INFO] |  |  +- org.glassfish.jersey.containers:jersey-container-servlet:jar:2.33:runtime
+[INFO] |  |  +- org.glassfish.jersey.containers:jersey-container-servlet-core:jar:2.33:compile
+[INFO] |  |  +- org.glassfish.jersey.core:jersey-client:jar:2.33:compile
+[INFO] |  |  \- org.eclipse.jetty:jetty-io:jar:9.4.44.v20210927:compile
+[INFO] |  +- io.dropwizard:dropwizard-servlets:jar:2.0.28:compile
+[INFO] |  +- io.dropwizard:dropwizard-jetty:jar:2.0.28:compile
+[INFO] |  |  +- org.eclipse.jetty:jetty-servlets:jar:9.4.44.v20210927:compile
+[INFO] |  |  |  \- org.eclipse.jetty:jetty-continuation:jar:9.4.44.v20210927:compile
+[INFO] |  |  \- org.eclipse.jetty:jetty-http:jar:9.4.44.v20210927:compile
+[INFO] |  +- io.dropwizard:dropwizard-lifecycle:jar:2.0.28:compile
+[INFO] |  +- io.dropwizard.metrics:metrics-core:jar:4.1.29:compile
+[INFO] |  +- io.dropwizard.metrics:metrics-jetty9:jar:4.1.29:compile
+[INFO] |  +- io.dropwizard.metrics:metrics-jvm:jar:4.1.29:compile
+[INFO] |  +- io.dropwizard.metrics:metrics-jmx:jar:4.1.29:compile
+[INFO] |  +- io.dropwizard.metrics:metrics-servlets:jar:4.1.29:compile
+[INFO] |  |  +- io.dropwizard.metrics:metrics-json:jar:4.1.29:compile
+[INFO] |  |  \- com.helger:profiler:jar:1.1.1:compile
+[INFO] |  +- io.dropwizard.metrics:metrics-healthchecks:jar:4.1.29:compile
+[INFO] |  +- io.dropwizard:dropwizard-request-logging:jar:2.0.28:compile
+[INFO] |  |  \- ch.qos.logback:logback-access:jar:1.2.9:compile
+[INFO] |  +- ch.qos.logback:logback-classic:jar:1.2.9:compile
+[INFO] |  +- com.google.code.findbugs:jsr305:jar:3.0.2:compile
+[INFO] |  +- jakarta.servlet:jakarta.servlet-api:jar:4.0.4:compile
+[INFO] |  +- jakarta.validation:jakarta.validation-api:jar:2.0.2:compile
+[INFO] |  +- jakarta.ws.rs:jakarta.ws.rs-api:jar:2.1.6:compile
+[INFO] |  +- net.sourceforge.argparse4j:argparse4j:jar:0.8.1:compile
+[INFO] |  +- org.eclipse.jetty:jetty-security:jar:9.4.44.v20210927:compile
+[INFO] |  +- org.eclipse.jetty:jetty-server:jar:9.4.44.v20210927:compile
+[INFO] |  +- org.eclipse.jetty:jetty-servlet:jar:9.4.44.v20210927:compile
+[INFO] |  |  \- org.eclipse.jetty:jetty-util-ajax:jar:9.4.44.v20210927:compile
+[INFO] |  +- org.eclipse.jetty:jetty-util:jar:9.4.44.v20210927:compile
+[INFO] |  +- org.eclipse.jetty.toolchain.setuid:jetty-setuid-java:jar:1.0.4:compile
+[INFO] |  +- org.glassfish.hk2.external:jakarta.inject:jar:2.6.1:compile
+[INFO] |  +- org.glassfish.jersey.core:jersey-common:jar:2.33:compile
+[INFO] |  |  \- org.glassfish.hk2:osgi-resource-locator:jar:1.0.3:compile
+[INFO] |  \- org.glassfish.jersey.ext:jersey-bean-validation:jar:2.33:compile
+[INFO] +- org.hibernate:hibernate-validator:jar:5.4.3.Final:compile
+[INFO] |  +- javax.validation:validation-api:jar:1.1.0.Final:compile
+[INFO] |  +- org.jboss.logging:jboss-logging:jar:3.3.0.Final:compile
+[INFO] |  \- com.fasterxml:classmate:jar:1.3.1:compile
+[INFO] +- io.dropwizard:dropwizard-jdbi:jar:1.3.14:compile
+[INFO] |  +- io.dropwizard:dropwizard-db:jar:1.3.14:compile
+[INFO] |  |  \- org.apache.tomcat:tomcat-jdbc:jar:9.0.16:compile
+[INFO] |  |     \- org.apache.tomcat:tomcat-juli:jar:9.0.16:compile
+[INFO] |  +- org.jdbi:jdbi:jar:2.78:compile
+[INFO] |  \- io.dropwizard.metrics:metrics-jdbi:jar:4.0.5:compile
+[INFO] +- io.dropwizard:dropwizard-jdbi3:jar:2.0.28:compile
+[INFO] |  +- io.dropwizard.metrics:metrics-annotation:jar:4.1.29:compile
+[INFO] |  +- joda-time:joda-time:jar:2.10.13:compile
+[INFO] |  +- org.jdbi:jdbi3-jodatime2:jar:3.25.0:compile
+[INFO] |  +- org.jdbi:jdbi3-guava:jar:3.25.0:compile
+[INFO] |  \- io.dropwizard.metrics:metrics-jdbi3:jar:4.1.29:compile
+[INFO] +- redis.clients:jedis:jar:2.9.1:provided
+[INFO] |  \- org.apache.commons:commons-pool2:jar:2.4.3:provided
+[INFO] +- io.projectreactor:reactor-core:jar:3.4.7:compile
+[INFO] |  \- org.reactivestreams:reactive-streams:jar:1.0.3:compile
+[INFO] +- biz.paluch.redis:lettuce:jar:4.5.0.Final:compile
+[INFO] |  +- io.reactivex:rxjava:jar:1.3.8:compile
+[INFO] |  +- io.netty:netty-common:jar:4.1.29.Final:compile
+[INFO] |  +- io.netty:netty-transport:jar:4.1.29.Final:compile
+[INFO] |  |  +- io.netty:netty-buffer:jar:4.1.29.Final:compile
+[INFO] |  |  \- io.netty:netty-resolver:jar:4.1.29.Final:compile
+[INFO] |  \- io.netty:netty-handler:jar:4.1.29.Final:compile
+[INFO] |     \- io.netty:netty-codec:jar:4.1.29.Final:compile
+[INFO] +- com.azure:azure-cosmos:jar:4.27.0:compile
+[INFO] |  +- com.azure:azure-core:jar:1.26.0:compile
+[INFO] |  |  +- com.fasterxml.jackson.dataformat:jackson-dataformat-xml:jar:2.13.1:compile
+[INFO] |  |  |  +- org.codehaus.woodstox:stax2-api:jar:4.2.1:compile
+[INFO] |  |  |  \- com.fasterxml.woodstox:woodstox-core:jar:6.2.7:compile
+[INFO] |  |  \- io.netty:netty-tcnative-boringssl-static:jar:2.0.47.Final:compile
+[INFO] |  |     \- io.netty:netty-tcnative-classes:jar:2.0.47.Final:compile
+[INFO] |  +- com.azure:azure-core-http-netty:jar:1.11.8:compile
+[INFO] |  |  +- io.netty:netty-codec-http2:jar:4.1.73.Final:compile
+[INFO] |  |  +- io.netty:netty-transport-native-unix-common:jar:4.1.73.Final:compile
+[INFO] |  |  \- io.projectreactor.netty:reactor-netty-http:jar:1.0.15:compile
+[INFO] |  |     +- io.netty:netty-resolver-dns:jar:4.1.72.Final:compile
+[INFO] |  |     |  \- io.netty:netty-codec-dns:jar:4.1.72.Final:compile
+[INFO] |  |     +- io.netty:netty-resolver-dns-native-macos:jar:osx-x86_64:4.1.72.Final:compile
+[INFO] |  |     |  \- io.netty:netty-resolver-dns-classes-macos:jar:4.1.72.Final:compile
+[INFO] |  |     \- io.projectreactor.netty:reactor-netty-core:jar:1.0.15:compile
+[INFO] |  +- org.hdrhistogram:HdrHistogram:jar:2.1.12:compile
+[INFO] |  \- io.micrometer:micrometer-core:jar:1.8.2:compile
+[INFO] |     \- org.latencyutils:LatencyUtils:jar:2.0.3:runtime
+[INFO] +- com.microsoft.azure:azure-cosmosdb:jar:2.4.4:compile
+[INFO] |  +- com.microsoft.azure:azure-cosmosdb-commons:jar:2.4.4:compile
+[INFO] |  |  \- commons-validator:commons-validator:jar:1.6:compile
+[INFO] |  |     +- commons-beanutils:commons-beanutils:jar:1.9.2:compile
+[INFO] |  |     +- commons-digester:commons-digester:jar:1.8.1:compile
+[INFO] |  |     \- commons-collections:commons-collections:jar:3.2.2:compile
+[INFO] |  +- com.microsoft.azure:azure-cosmosdb-gateway:jar:2.4.4:compile
+[INFO] |  +- com.microsoft.azure:azure-cosmosdb-direct:jar:2.4.4:compile
+[INFO] |  +- com.fasterxml.uuid:java-uuid-generator:jar:3.1.4:compile
+[INFO] |  +- com.github.davidmoten:rxjava-extras:jar:0.8.0.17:compile
+[INFO] |  +- io.reactivex:rxjava-string:jar:1.1.1:compile
+[INFO] |  +- io.reactivex:rxnetty:jar:0.4.20:compile
+[INFO] |  \- io.netty:netty-codec-http:jar:4.1.32.Final:compile
+[INFO] +- com.microsoft.azure:azure-documentdb:jar:2.1.2:compile
+[INFO] |  +- org.json:json:jar:20140107:compile
+[INFO] |  +- org.apache.commons:commons-collections4:jar:4.2:compile
+[INFO] |  +- org.apache.httpcomponents:httpclient:jar:4.5.2:compile
+[INFO] |  |  \- commons-logging:commons-logging:jar:1.2:compile
+[INFO] |  \- org.apache.httpcomponents:httpcore:jar:4.4.6:compile
+[INFO] +- org.jdbi:jdbi3-core:jar:3.26.0:compile
+[INFO] |  +- org.antlr:antlr4-runtime:jar:4.9.2:compile
+[INFO] |  +- io.leangen.geantyref:geantyref:jar:1.3.13:compile
+[INFO] |  \- com.github.ben-manes.caffeine:caffeine:jar:2.9.2:compile
+[INFO] +- org.jdbi:jdbi3-sqlobject:jar:3.26.0:compile
+[INFO] +- org.jdbi:jdbi3-kotlin:jar:3.11.0:compile
+[INFO] |  +- org.jetbrains:annotations:jar:13.0:compile
+[INFO] |  \- org.jetbrains.kotlin:kotlin-stdlib:jar:1.3.50:compile
+[INFO] +- org.jdbi:jdbi3-kotlin-sqlobject:jar:3.26.0:compile
+[INFO] +- com.google.zxing:core:jar:3.0.0:compile
+[INFO] +- com.google.zxing:javase:jar:3.0.0:compile
+[INFO] +- com.google.inject:guice:jar:4.2.2:compile
+[INFO] |  +- javax.inject:javax.inject:jar:1:compile
+[INFO] |  \- aopalliance:aopalliance:jar:1.0:compile
+[INFO] +- com.fasterxml.jackson.core:jackson-core:jar:2.9.0:compile
+[INFO] +- com.fasterxml.jackson.core:jackson-databind:jar:2.9.0:compile
+[INFO] +- com.fasterxml.jackson.core:jackson-annotations:jar:2.9.0:compile
+[INFO] +- com.fasterxml.jackson.module:jackson-module-kotlin:jar:2.9.0:compile
+[INFO] +- com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:jar:2.9.0:compile
+[INFO] |  \- org.yaml:snakeyaml:jar:1.17:compile
+[INFO] +- com.fasterxml.jackson.datatype:jackson-datatype-guava:jar:2.9.0:compile
+[INFO] +- com.fasterxml.jackson.datatype:jackson-datatype-jsr310:jar:2.9.0:compile
+[INFO] +- com.google.guava:guava:jar:29.0-jre:compile
+[INFO] |  +- com.google.guava:failureaccess:jar:1.0.1:compile
+[INFO] |  +- com.google.guava:listenablefuture:jar:9999.0-empty-to-avoid-conflict-with-guava:compile
+[INFO] |  +- org.checkerframework:checker-qual:jar:2.11.1:compile
+[INFO] |  +- com.google.errorprone:error_prone_annotations:jar:2.3.4:compile
+[INFO] |  \- com.google.j2objc:j2objc-annotations:jar:1.3:compile
+[INFO] +- com.fasterxml.jackson.datatype:jackson-datatype-jdk8:jar:2.9.0:compile
+[INFO] +- com.fasterxml.jackson.module:jackson-module-parameter-names:jar:2.9.0:compile
+[INFO] +- com.fasterxml.jackson.module:jackson-module-afterburner:jar:2.9.0:compile
+[INFO] +- com.fasterxml.jackson.datatype:jackson-datatype-joda:jar:2.9.0:compile
+[INFO] +- com.fasterxml.jackson.dataformat:jackson-dataformat-csv:jar:2.9.0:compile
+[INFO] +- org.jetbrains.kotlinx:kotlinx-coroutines-core:jar:1.2.1:compile
+[INFO] |  \- org.jetbrains.kotlin:kotlin-stdlib-common:jar:1.3.30:compile
+[INFO] +- org.jetbrains.kotlinx:kotlinx-coroutines-jdk8:jar:1.2.1:compile
+[INFO] +- org.slf4j:slf4j-api:jar:1.7.7:compile
+[INFO] +- org.asynchttpclient:async-http-client:jar:2.12.3:provided
+[INFO] |  +- org.asynchttpclient:async-http-client-netty-utils:jar:2.12.3:provided
+[INFO] |  +- io.netty:netty-codec-socks:jar:4.1.60.Final:compile
+[INFO] |  +- io.netty:netty-handler-proxy:jar:4.1.60.Final:compile
+[INFO] |  +- io.netty:netty-transport-native-epoll:jar:linux-x86_64:4.1.60.Final:compile
+[INFO] |  +- io.netty:netty-transport-native-kqueue:jar:osx-x86_64:4.1.60.Final:compile
+[INFO] |  +- com.typesafe.netty:netty-reactive-streams:jar:2.0.4:provided
+[INFO] |  \- com.sun.activation:jakarta.activation:jar:1.2.2:provided
+[INFO] +- io.prometheus:simpleclient:jar:0.8.0:compile
+[INFO] +- io.prometheus:simpleclient_servlet:jar:0.8.0:compile
+[INFO] |  \- io.prometheus:simpleclient_common:jar:0.8.0:compile
+[INFO] +- io.prometheus:simpleclient_hotspot:jar:0.8.0:compile
+[INFO] +- io.prometheus:simpleclient_jetty:jar:0.8.0:compile
+[INFO] +- io.prometheus:simpleclient_jetty_jdk8:jar:0.8.0:compile
+[INFO] +- io.prometheus:simpleclient_pushgateway:jar:0.8.0:compile
+[INFO] +- io.prometheus:simpleclient_httpserver:jar:0.8.0:compile
+[INFO] +- io.prometheus:simpleclient_caffeine:jar:0.8.0:compile
+[INFO] +- io.prometheus:simpleclient_dropwizard:jar:0.8.0:compile
+[INFO] +- org.apache.zookeeper:zookeeper:jar:3.4.8:compile
+[INFO] |  +- jline:jline:jar:0.9.94:compile
+[INFO] |  \- io.netty:netty:jar:3.7.0.Final:compile
+[INFO] +- org.jetbrains.kotlin:kotlin-stdlib-jdk8:jar:1.6.20:compile
+[INFO] |  \- org.jetbrains.kotlin:kotlin-stdlib-jdk7:jar:1.6.20:compile
+[INFO] +- org.apache.commons:commons-lang3:jar:3.8.1:compile
+[INFO] +- io.dropwizard.modules:dropwizard-protobuf:jar:2.0.12-1:compile
+[INFO] |  +- com.google.protobuf:protobuf-java:jar:3.13.0:compile
+[INFO] |  \- com.google.protobuf:protobuf-java-util:jar:3.13.0:compile
+[INFO] +- commons-io:commons-io:jar:2.5:compile
+[INFO] +- org.jetbrains.kotlin:kotlin-reflect:jar:1.2.0:compile
+[INFO] +- com.auth0:java-jwt:jar:3.1.0:provided
+[INFO] |  +- commons-codec:commons-codec:jar:1.10:compile
+[INFO] |  \- org.bouncycastle:bcprov-jdk15on:jar:1.55:provided
+[INFO] +- com.microsoft.sqlserver:mssql-jdbc:jar:6.2.1.jre8:compile
+[INFO] +- com.azure:azure-core-http-okhttp:jar:1.4.1:compile
+[INFO] |  \- com.squareup.okhttp3:okhttp:jar:4.8.1:compile
+[INFO] |     \- com.squareup.okio:okio:jar:2.7.0:compile
+[INFO] +- com.microsoft.azure:azure-eventhubs-eph:jar:2.4.0:provided
+[INFO] |  +- com.microsoft.azure:azure-eventhubs:jar:2.2.0:provided
+[INFO] |  |  +- org.apache.qpid:proton-j:jar:0.31.0:provided
+[INFO] |  |  \- com.microsoft.azure:qpid-proton-j-extensions:jar:1.1.0:provided
+[INFO] |  +- com.microsoft.azure:azure-storage:jar:8.0.0:provided
+[INFO] |  |  \- com.microsoft.azure:azure-keyvault-core:jar:1.0.0:provided
+[INFO] |  \- com.google.code.gson:gson:jar:2.8.5:compile
+[INFO] +- org.projectlombok:lombok:jar:1.18.20:compile
+[INFO] \- org.jetbrains.kotlin:kotlin-test:jar:1.6.20:test
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  2.663 s
+[INFO] Finished at: 2022-07-25T22:10:00+05:30
+[INFO] ------------------------------------------------------------------------

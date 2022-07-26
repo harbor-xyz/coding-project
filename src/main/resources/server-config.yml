@@ -1,14 +1,16 @@
-server:
-  rootPath: /
-  applicationConnectors:
-    - type: http
-      port: 7002
-  adminConnectors:
-    - type: http
-      port: 7003
-
+---
 logging:
   level: WARN
   loggers:
-    "io.dropwizard": INFO
-    "org.eclipse.jetty": INFO
+    io.dropwizard: INFO
+    org.eclipse.jetty: INFO
+server:
+  adminConnectors:
+    -
+      port: 7003
+      type: http
+  applicationConnectors:
+    -
+      port: 7002
+      type: http
+  rootPath: /

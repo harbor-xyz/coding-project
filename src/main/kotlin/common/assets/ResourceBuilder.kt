@@ -56,15 +56,7 @@ class ResourceBuilder {
     }
 
     companion object {
-        /**
-         * Get resource builder for a redis client. For configuration options, see [RedisClientBuilder]
-         *
-         * @param resourceId
-         * @return a redis client builder
-         */
-        fun redisClient(resourceId: String) : RedisClientBuilder {
-            return RedisClientBuilder(ResourceBuilder(resourceId, "redis"))
-        }
+
 
         /**
          * @return a resource builder for a JDBI client corresponding to [resourceId].

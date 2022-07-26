@@ -2,7 +2,6 @@ package common
 
 import com.fasterxml.jackson.databind.DeserializationFeature
 import com.fasterxml.jackson.databind.SerializationFeature
-import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule
 import com.google.inject.Module
 import common.server.DropwizardApplication
 import common.server.LifeCycleObjectRepo
@@ -28,7 +27,6 @@ class CalendlyApplication : DropwizardApplication<CalendlyProjectConfiguration>(
         )
     }
 
-    override fun getJacksonModules() = listOf(JavaTimeModule())
 
     override fun getResourceClasses() = listOf(
         UserAvailabilityResource::class.java,
