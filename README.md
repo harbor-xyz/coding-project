@@ -17,9 +17,9 @@ It is up to you what else to support.
 ## How to test
 
 ### remote
-Server is hosted remotely at via Docker & Azure Container at calendly.southindia.azurecontainer.io:7002
+Server is hosted remotely via Docker on Azure Container Instance at `calendly.southindia.azurecontainer.io`
 ```
-GET user:  http://localhost:7002/user/get/1
+GET user:  http://calendly.southindia.azurecontainer.io:7002/user/get/1
 GET user availability:  http://calendly.southindia.azurecontainer.io:7002/availability/user/1
 ```
 ### local
