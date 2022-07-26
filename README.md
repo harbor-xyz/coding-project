@@ -19,8 +19,8 @@ It is up to you what else to support.
 ### remote
 Server is hosted remotely at via Docker & Azure Container at calendly.southindia.azurecontainer.io:7002
 ```
+GET user:  http://localhost:7002/user/get/1
 GET user availability:  http://calendly.southindia.azurecontainer.io:7002/availability/user/1
-GET user:  http://calendly.southindia.azurecontainer.io:7002/availability/user/1
 ```
 ### local
 ```
@@ -49,7 +49,6 @@ curl -X POST -H "Content-Type: application/json" -d  '{"availabilityList": [{"da
 
 # GET Overlappping availability between two users 
 http://127.0.0.1:7002/availability/userAvailability/getOverlappingAvailability/user1/1/userId2/2
-
 ```
 
 ### Tech choices:
