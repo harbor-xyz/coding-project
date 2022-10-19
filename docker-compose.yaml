@@ -1,0 +1,39 @@
+version: "2.2"
+services:
+  calendly:
+    image: calendly:0.0.1-SNAPSHOT
+    network_mode: host
+    container_name: calendly
+  prometheus:
+    image: prom/prometheus:v2.35.0
+    network_mode: host
+    container_name: prometheus
+    restart: unless-stopped
+    volumes:
+      - ./config:/etc/prometheus/
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yaml'
+  mongodb:
+    image: mongo
+    network_mode: host
+    container_name: mongo
+    restart: unless-stopped
+    volumes:
+      - mongodb:/data/db
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=mongoadmin
+      - MONGO_INITDB_ROOT_PASSWORD=mongopass
+      - MONGO_INITDB_DATABASE=calendly
+  grafana:
+    image: grafana/grafana-oss:8.5.2
+    network_mode: host
+    container_name: grafana
+    restart: unless-stopped
+    volumes:  
+      - grafana:/var/lib/grafana
+    environment:
+      - GF_SECURITY_ADMIN_PASSWORD=admin
+      - GF_SERVER_DOMAIN=localhost
+volumes:
+  grafana:
+  mongodb:

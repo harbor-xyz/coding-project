@@ -1,0 +1,507 @@
+{
+	"info": {
+		"_postman_id": "4c6fe946-040f-45e3-81af-4821751bb522",
+		"name": "Harbor",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Create User SAM",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"console.log(\"We will execute a scenario in which we will assume that the user of this application is a consultant\");",
+							"console.log(\"User SAM, who is a consultant, needs to expose a slot of working on Weekdays, between 9:00 AM to 5:00 PM GMT and allows for 60 mins consultation\");",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.expect(pm.response.status).eq('Created');",
+							"console.log(\"User SAM is created successfully\");",
+							"console.log(\"saving userId \", pm.response.json().data.userId);",
+							"pm.globals.set(\"userId\",pm.response.json().data.userId);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"SAM\",\n    \"email\": \"sam.consultant@gmail.com\",\n    \"mobileNumber\": \"91902866608\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/user",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"user"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Event Consulting Event for SAM",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"console.log(\"We will now create the consulting event for SAM. We will use the default slots of 9:00 AM to 5:00 PM GMT available for duration 15-Oct-2022 to 30-Oct-2022\");",
+							"console.log(\"We will name the event as, Harbor consulting hours\");"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.expect(pm.response.status).eq('Created');",
+							"console.log(\"Event is now created. we will fetch the Event to see the slots configured\");",
+							"pm.globals.set(\"eventId\", pm.response.json().data.id);",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "userId",
+						"value": "{{userId}}",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"eventName\": \"Harbor consulting hours\",\n    \"eventStartDateTime\" : 1665792000,\n    \"eventEndDateTime\": 1667088000\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/event",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"event"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Book an event for Customer A",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"console.log(\"Now, we will try and book a consulting slot for customer A. 20-Oct 12:00 PM to 12:30 PM\");",
+							"console.log(\"This should succeed as we are trying a valid slot\");"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.expect(pm.response.status).eq('OK');",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "userId",
+						"value": "{{userId}}",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"eventId\": \"{{eventId}}\",\n    \"userId\": \"{{userId}}\",\n    \"slotStartTime\": 1666267200,\n    \"slotEndTime\": 1666269000,\n    \"userInformation\" : {\n        \"name\" : \"Customer A\",\n        \"email\": \"customerA@gmail.com\",\n        \"mobileNumber\" : \"9028686607\"\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/event/{{eventId}}/book",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"event",
+						"{{eventId}}",
+						"book"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Book an event for Customer B",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"console.log(\"Now, we will try and book a consulting slot for customer B. 20-Oct 12:00 PM to 12:30 PM\");",
+							"console.log(\"This should fail as customer A has already booked the slot\");"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.expect(pm.response.status).eq('Bad Request');",
+							"console.log(\"We are also printing the error message coming from the response\");",
+							"console.log(\"Response: \", pm.response.json().data);",
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "userId",
+						"value": "{{userId}}",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"eventId\": \"{{eventId}}\",\n    \"userId\": \"{{userId}}\",\n    \"slotStartTime\": 1666267200,\n    \"slotEndTime\": 1666269000,\n    \"userInformation\" : {\n        \"name\" : \"Customer B\",\n        \"email\": \"customerB@gmail.com\",\n        \"mobileNumber\" : \"9028686606\"\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/event/{{eventId}}/book",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"event",
+						"{{eventId}}",
+						"book"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Book an event for Customer C",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"console.log(\"Now, we will try and book a consulting slot for customer C. 22-Oct 9:30 AM to 10:00 AM\");",
+							"console.log(\"This should fail as this is outside of consulting hours\");"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.expect(pm.response.status).eq('Bad Request');",
+							"console.log(\"We are also printing the error message coming from the response\");",
+							"console.log(\"Response: \", pm.response.json().data);",
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "userId",
+						"value": "{{userId}}",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"eventId\": \"{{eventId}}\",\n    \"userId\": \"{{userId}}\",\n    \"slotStartTime\": 1666431000,\n    \"slotEndTime\": 1666432800,\n    \"userInformation\" : {\n        \"name\" : \"Customer C\",\n        \"email\": \"customerC@gmail.com\",\n        \"mobileNumber\" : \"9028686606\"\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/event/{{eventId}}/book",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"event",
+						"{{eventId}}",
+						"book"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Book an event for Customer D",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"console.log(\"Now, we will try and book a consulting slot for customer D adjecent to Customer A, but not overlapping\");",
+							"console.log(\"This should properly book.\");"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.expect(pm.response.status).eq('OK');",
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "userId",
+						"value": "{{userId}}",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"eventId\": \"{{eventId}}\",\n    \"userId\": \"{{userId}}\",\n    \"slotStartTime\": 1666269000,\n    \"slotEndTime\": 1666270800,\n    \"userInformation\" : {\n        \"name\" : \"Customer D\",\n        \"email\": \"customerD@gmail.com\",\n        \"mobileNumber\" : \"9018686606\"\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/event/{{eventId}}/book",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"event",
+						"{{eventId}}",
+						"book"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Book an event for Customer E",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"console.log(\"Now, we will try and book a consulting slot for customer E valid time, but duration of 1 hour instead of 30 mins\");",
+							"console.log(\"This should fail with proper reason.\");"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.expect(pm.response.status).eq('Bad Request');",
+							"console.log(\"Response: \", pm.response.json().data);",
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "userId",
+						"value": "{{userId}}",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"eventId\": \"{{eventId}}\",\n    \"userId\": \"{{userId}}\",\n    \"slotStartTime\": 1666272600,\n    \"slotEndTime\": 1666276200,\n    \"userInformation\" : {\n        \"name\" : \"Customer D\",\n        \"email\": \"customerD@gmail.com\",\n        \"mobileNumber\" : \"9018686606\"\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/event/{{eventId}}/book",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"event",
+						"{{eventId}}",
+						"book"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Events for User",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"console.log(\"In this test, we will try and get all event of the Consultant SAM. This should be 1 in count, but also represent free slots\");"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.expect(pm.response.status).eq(\"OK\");"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "userId",
+						"value": "{{userId}}",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/event",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"event"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Events By ID",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"console.log(\"Here we will try and fetch all the detais of the single evemt\")"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "userId",
+						"value": "{{userId}}",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/event/{{eventId}}",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"event",
+						"{{eventId}}"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
