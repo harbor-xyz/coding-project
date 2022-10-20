@@ -18,6 +18,7 @@ import com.harbor.calendly.models.CalendarSlot;
 import com.harbor.calendly.models.CalendlyEvent;
 import com.harbor.calendly.models.DOWSlot;
 import com.harbor.calendly.models.DaySlot;
+import com.harbor.calendly.models.EmailRequest;
 import com.harbor.calendly.models.EventBookRequest;
 import com.harbor.calendly.models.SlotType;
 import com.harbor.calendly.models.TimeType;
@@ -26,6 +27,7 @@ import com.harbor.calendly.respositories.EventBookRepo;
 import com.harbor.calendly.respositories.EventRepo;
 import com.harbor.calendly.respositories.UserMongoRepo;
 import com.harbor.calendly.utils.CommonUtils;
+import com.harbor.calendly.utils.EmailService;
 import com.harbor.calendly.validators.EventValidator;
 
 import io.micrometer.core.instrument.MeterRegistry;
@@ -48,6 +50,9 @@ public class EventService {
 
     @Autowired
     private MeterRegistry registry;
+
+    @Autowired
+    private EmailService emailService;
 
     public List<CalendlyEvent> getAllEventForUser(String userId) throws InvalidEventException {
         Optional<User> user = userRepo.findById(userId);
@@ -80,7 +85,7 @@ public class EventService {
         return event;
     }
 
-    public EventBookRequest bookSlot(EventBookRequest request) throws InvalidEventBookException {
+    public EventBookRequest bookSlot(EventBookRequest request, Boolean sendEmail) throws InvalidEventBookException {
         CalendlyEvent event = repo.findOneById(request.getEventId());
         if (null == event) {
             throw new InvalidEventBookException("Given eventId doesn't exist");
@@ -91,29 +96,30 @@ public class EventService {
 
         boolean canBook = checkIfAvailableOnFreeDays(event, request);
 
-        if (canBook) {
-            request = bookEventAndUpdateSlots(event, request);
-            return request;
-        }
-
         OffsetDateTime startDateTime = OffsetDateTime.ofInstant(Instant.ofEpochSecond(request.getSlotStartTime()),
                 ZoneOffset.UTC);
         OffsetDateTime endDateTime = OffsetDateTime.ofInstant(Instant.ofEpochSecond(request.getSlotEndTime()),
                 ZoneOffset.UTC);
+
+        if (canBook) {
+            request = bookEventAndUpdateSlots(event, request, startDateTime, endDateTime, sendEmail);
+            return request;
+        }
 
         checkOverlappingWithBookedSlots(startDateTime, endDateTime, event, request);
 
         canBook = checkIfAvailableOnFreeSlots(startDateTime, endDateTime, event, request);
 
         if (canBook) {
-            request = bookEventAndUpdateSlots(event, request);
+            request = bookEventAndUpdateSlots(event, request, startDateTime, endDateTime, sendEmail);
             return request;
         } else {
             throw new InvalidEventBookException("No free slot available. Outside of provided window");
         }
     }
 
-    public EventBookRequest bookEventAndUpdateSlots(CalendlyEvent event, EventBookRequest request) {
+    public EventBookRequest bookEventAndUpdateSlots(CalendlyEvent event, EventBookRequest request,
+            OffsetDateTime startDate, OffsetDateTime endDate, Boolean sendEmail) {
         CalendarSlot bookedCS = new CalendarSlot();
         bookedCS.setSlotType(SlotType.BUSY);
         bookedCS.setTimeType(TimeType.EPOCH);
@@ -129,8 +135,24 @@ public class EventService {
         event.getBookedDays().add(daySlot);
         repo.save(event);
         request = eventBookRepo.save(request);
+        if (sendEmail.equals(Boolean.TRUE))
+            emailService.sendEmailInvite(getEmailRequest(event, request, startDate, endDate));
         registry.counter("eventBooked", "eventId", event.getId()).increment();
         return request;
+    }
+
+    public EmailRequest getEmailRequest(CalendlyEvent event, EventBookRequest request, OffsetDateTime startDate,
+            OffsetDateTime endDate) {
+        User user = userRepo.findById(event.getUserId()).get();
+        EmailRequest emailRequest = new EmailRequest();
+        emailRequest.setEventName(event.getEventName());
+        emailRequest.setToAddress(request.getUserInformation().getEmail());
+        emailRequest.setFromAddress(user.getEmail());
+        emailRequest.setSlotStartDate(startDate);
+        emailRequest.setSlotEndDate(endDate);
+        emailRequest.setFromName(user.getName());
+        emailRequest.setToName(request.getUserInformation().getName());
+        return emailRequest;
     }
 
     public boolean checkIfAvailableOnFreeSlots(OffsetDateTime startDateTime, OffsetDateTime endDateTime,

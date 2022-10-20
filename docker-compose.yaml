@@ -12,6 +12,8 @@ services:
     volumes:
       - ./config:/etc/prometheus/
     command:
+      - '--web.external-url=/prometheus/'
+      - '--web.route-prefix=/prometheus/'
       - '--config.file=/etc/prometheus/prometheus.yaml'
   mongodb:
     image: mongo
@@ -34,6 +36,8 @@ services:
     environment:
       - GF_SECURITY_ADMIN_PASSWORD=admin
       - GF_SERVER_DOMAIN=localhost
+      - GF_SERVER_ROOT_URL=http://localhost/grafana/
+      - GF_SERVER_SERVE_FROM_SUB_PATH=true
 volumes:
   grafana:
   mongodb:

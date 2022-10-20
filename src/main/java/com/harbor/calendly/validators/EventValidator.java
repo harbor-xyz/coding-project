@@ -1,5 +1,7 @@
 package com.harbor.calendly.validators;
 
+import java.time.Instant;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -31,6 +33,11 @@ public class EventValidator {
         if (event.getEventStartDateTime() >= request.getSlotStartTime()
                 || event.getEventEndDateTime() <= request.getSlotEndTime()) {
             throw new InvalidEventBookException("Event book range is outside of preferences");
+        }
+        long limits = Instant.now().toEpochMilli() / 1000 + (60 * 30);
+        logger.info("Limits calculated as: {}", limits);
+        if (request.getSlotStartTime() <= limits || request.getSlotEndTime() <= limits) {
+            throw new InvalidEventBookException("Booking slot too close to current time");
         }
         return true;
     }

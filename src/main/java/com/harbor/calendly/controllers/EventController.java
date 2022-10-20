@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.harbor.calendly.exceptions.InvalidEventBookException;
@@ -66,9 +67,10 @@ public class EventController {
     }
 
     @PostMapping("/event/{eventId}/book")
-    public ResponseEntity<Response> bookEvent(@RequestBody EventBookRequest request) {
+    public ResponseEntity<Response> bookEvent(@RequestBody EventBookRequest request,
+            @RequestParam(name = "sendEmail", defaultValue = "false") Boolean sendEmail) {
         try {
-            eventService.bookSlot(request);
+            eventService.bookSlot(request, sendEmail);
         } catch (InvalidEventBookException ex) {
             return new ResponseEntity<>(new Response(false, "Unable to book slot " + ex.getMessage()),
                     HttpStatus.BAD_REQUEST);
