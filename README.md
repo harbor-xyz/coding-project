@@ -36,3 +36,7 @@ Please fork this repository and reach out to Prakash when finished.
 ## Next Steps
 
 After submission, we will conduct a 30 to 60 minute code review in person. We will ask you about your thinking and design choices.
+
+### Solution
+
+Please see HELP.md for more details on how to run the application.
