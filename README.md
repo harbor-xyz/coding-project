@@ -1,38 +1,29 @@
-# Harbor Take Home Project
 
-Welcome to the Harbor take home project. We hope this is a good opportunity for you to showcase your skills.
+## MVP Features supported:
+- User is able to create, view, update, delete his profile
+- User is able to create, view , modify and delete his availability
+- User is able to share his entire availability to other users
+- User is able to see all overlaps with any set of registered users
+- user is able to create, view, update, cancel booking meeting 
 
-## The Challenge
+## Test Coverage
+- Added unit test for userService.(Skipped other classes in the interest of time)
+- Exhaustive Integration Test Coverage using RestTemplate for all features except BookingController.
+- Integration test coverage ensures working Apis and its correctness
 
-Build us a REST API for calendly. Remember to support
+## Assumptions 
+-Using InMemory Database for persisting data.
+-All users register on the application to be able to use the features
+- Have skipped some validation and incremental logic in some parts of application.Will keep on iterating on the same.
 
-- Setting own availability
-- Showing own availability
-- Finding overlap in schedule between 2 users
+## Future Improvements
+- Add logging framework
+- Emit appropriate metrics
+- Integrate Swagger
+- Integrate Java Cods Coverage
 
-It is up to you what else to support.
 
-## Expectations
 
-We care about
 
-- Have you thought through what a good MVP looks like? Does your API support that?
-- What trade-offs are you making in your design?
-- Working code - we should be able to pull and hit the code locally. Bonus points if deployed somewhere.
-- Any good engineer will make hacks when necessary - what are your hacks and why?
 
-We don't care about
 
-- Authentication
-- UI
-- Perfection - good and working quickly is better
-
-It is up to you how much time you want to spend on this project. There are likely diminishing returns as the time spent goes up.
-
-## Submission
-
-Please fork this repository and reach out to Prakash when finished.
-
-## Next Steps
-
-After submission, we will conduct a 30 to 60 minute code review in person. We will ask you about your thinking and design choices.
