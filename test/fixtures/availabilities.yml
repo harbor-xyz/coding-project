@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  start_time: 2024-11-07 15:40:09
+  end_time: 2024-11-07 15:40:09
+  user: one
+  timezone: one
+
+two:
+  start_time: 2024-11-07 15:40:09
+  end_time: 2024-11-07 15:40:09
+  user: two
+  timezone: two
