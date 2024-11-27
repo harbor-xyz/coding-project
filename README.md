@@ -1,38 +1,83 @@
-# Harbor Take Home Project
+# Calendar Booking API Documentation
 
-Welcome to the Harbor take home project. We hope this is a good opportunity for you to showcase your skills.
+## Overview
+This API provides a flexible calendar booking system with user-specific availability and event management.
 
-## The Challenge
+## Endpoints
 
-Build us a REST API for calendly. Remember to support
+### User Management
+- **Create User**
+  - `POST /user`
+  - Creates a new user with default empty and available slots
+  - Response: User details with a unique user ID
 
-- Setting own availability
-- Showing own availability
-- Finding overlap in schedule between 2 users
+### Slot Management
+- **Get Available Slots**
+  - `GET /:userId/get-slots`
+  - Retrieves available slots for a specific user
+  - Query Parameters:
+    - `startTime`: Beginning of the time range
+    - `endTime`: End of the time range
+  - Response: List of available time slots
 
-It is up to you what else to support.
+- **Set User Availability**
+  - Restricted to the user themselves
+  - Allows setting personal available time slots
 
-## Expectations
+### Event Booking
+- **Book a Slot**
+  - Booking process with intelligent conflict checking:
+    1. Validates if the requested slot is within user's availability
+    2. Checks for existing event conflicts
+    3. Provides warning if conflicts exist
+    4. Allows booking even with conflicts
 
-We care about
+- **Get Existing Slots**
+  - `GET /:userId/slots`
+  - Retrieves all existing booked slots for a user
 
-- Have you thought through what a good MVP looks like? Does your API support that?
-- What trade-offs are you making in your design?
-- Working code - we should be able to pull and hit the code locally. Bonus points if deployed somewhere.
-- Any good engineer will make hacks when necessary - what are your hacks and why?
+- **Cancel Event**
+  - Allows cancellation of a specific event for a user
 
-We don't care about
+- **Event Acceptance**
+  - `PATCH /:userId/accept-event/:eventId`
+  - Allows user to accept or reject a proposed event
+  - User receives a notification (future implementation)
 
-- Authentication
-- UI
-- Perfection - good and working quickly is better
+### Conflict Management
+- **Check User Conflicts**
+  - Identifies and reports scheduling conflicts between two users
 
-It is up to you how much time you want to spend on this project. There are likely diminishing returns as the time spent goes up.
+## Booking Logic Details
+- Slot booking checks:
+  - Validates slot against user's availability
+  - Detects scheduling conflicts
+  - Provides conflict warnings
+  - Allows flexible booking with user consent
 
-## Submission
+## Assumptions
+- Users are on the same tz i.e UTC
+- Conflicts while blocking a calendar is acceptable and the user gets a choice to accept the meeting
+- Meetings can be scheduled with users in and out of the org
+- if user has mentioned available slots - it is a hard pass on any other slots.
 
-Please fork this repository and reach out to Prakash when finished.
+## Hacks
+- Passing emailId in headers for a few validations instead of authentication
+- used renderer for deployment
 
-## Next Steps
+## Future Enhancements
+- Notification system for event requests
+- Timezone management
+- More granular conflict resolution
 
-After submission, we will conduct a 30 to 60 minute code review in person. We will ask you about your thinking and design choices.
+## Note
+- Conflict handling allows flexibility while maintaining user control
+
+## Postman Doc URL
+- https://documenter.getpostman.com/view/21104624/2sAYBViBrF
+
+
+## Hosted on:
+- https://calendly-sm8z.onrender.com
+- This is a free tier and can be slow, kindly reach out to me if its not working
+- Repo can be cloned and postman docs can be refered to hit the APIs locally in the worst case scenario
